@@ -29,6 +29,10 @@
 
 
 内容：172.17.0.1 - - [21/May/2026:09:33:58 +0000] "GET /vulnerabilities/sqli/?id=12&Submit=Submit HTTP/1.1" 200 1772 "http://localhost:9090/vulnerabilities/sqli/?id=1&Submit=Submit" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+
+
+
+
 可以清楚看到?id=1，很明显，这是一次正常行为
 
 但是，当我输入了' or '1'='1（基础的SQL注入语句，这里不细说了），效果如下
@@ -45,7 +49,11 @@
 
 
 内容：172.17.0.1 - - [21/May/2026:09:40:09 +0000] "GET /vulnerabilities/sqli/?id=+%27+or+%271%27%3D%271&Submit=Submit HTTP/1.1" 200 1853 "http://localhost:9090/vulnerabilities/sqli/?id=%27+or+%271%27%3D%271&Submit=Submit" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
-?id=%27+or+%271%27%3D%271，这就是我们刚刚注入的SQL语句
+?id=%27+or+%271%27%3D%271
+
+
+
+这就是我们刚刚注入的SQL语句
 很明显，虽然经过了编码，样子已经变了，但是那个or就是sql注入的危险的信号
 
 ## 学习点
