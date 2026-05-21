@@ -42,7 +42,7 @@ DVWA默认账密：admin / password
 
 
 
-因为DVWA的low难度没有设置过滤，所以直接注入成功了！
+因为DVWA的low难度没有设置过滤，参数进入SQL语句，导致SQL结构被拼接。所以直接注入成功了！
 在日志里，可以看到
 <img width="1051" height="58" alt="屏幕截图 2026-05-21 174041" src="https://github.com/user-attachments/assets/472d9725-c805-438d-9df4-352c77eab416" />
 
