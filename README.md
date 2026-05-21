@@ -1,21 +1,23 @@
 # DVWA-Docker-Web
-我的第一个项目，基于docker环境部署的dvwa，并且使用dozzle查看攻击日志
-本项目基于Docker部署DVWA靶场环境，用于复现SQL注入、XSS等常见Web漏洞，并结合Apache日志进行攻击行为分析。
+1. 项目简介
 
-## 环境
-- 操作系统：Windows 10
-- 容器工具：Docker Desktop
-- 靶场：DVWA（vulnerables/web-dvwa）
-- 运行端口：9090
+本项目基于 Docker 构建 DVWA（Damn Vulnerable Web Application）漏洞实验环境，通过 Web 攻击复现（SQL Injection）结合 Apache 访问日志与 Dozzle 容器日志监控，实现对攻击行为的可观测分析。
+2. 环境信息
 
-  cmd启动：docker run -d --name dvwa -p 9090:80 vulnerables/web-dvwa
-  访问：http://localhost:9090
-  DVWA默认账密：admin / password
+操作系统：Windows 10
+容器平台：Docker Desktop
+靶场环境：DVWA（vulnerables/web-dvwa）
+日志工具：Dozzle
+访问端口：9090
+
+cmd启动：docker run -d --name dvwa -p 9090:80 vulnerables/web-dvwa
+访问：http://localhost:9090
+DVWA默认账密：admin / password
   
-  ## SQL注入复现
+3.SQL注入复现
 用一个最简单的sql注入演示过程，dvwa的low难度
-### 正常请求
-输入id=1，回显如下
+
+先输入id=1正常请求，回显如下
 <img width="382" height="122" alt="屏幕截图 2026-05-21 173105" src="https://github.com/user-attachments/assets/55b1d0ed-a747-4c28-932f-98374948aa2c" />
 
 
@@ -53,13 +55,28 @@
 
 
 
-这就是我们刚刚注入的SQL语句
-很明显，虽然经过了编码，样子已经变了，但是那个or就是sql注入的危险的信号
+通过 Dozzle 观察 Docker 容器日志，可实时获取 Apache access.log 内容。
+这就是一条明显的SQL注入！
+日志字段说明：
 
-## 学习点
+客户端 IP：172.17.0.1（Docker bridge）
+请求路径：/vulnerabilities/sqli/
+请求参数：包含 SQL injection payload
+HTTP 状态码：200
 
-- Docker容器化部署Web靶场
-- Web请求在服务器日志中的记录方式
-- SQL注入的本质是SQL逻辑被拼接修改
-- 攻击行为可以通过日志还原
-在dozzle上部署靶场，一边攻击，一边看日志，在攻防两端的视角，理解漏洞的出现和利用，比无脑打靶场更有收获
+
+4.攻击链还原
+浏览器输入 → HTTP请求 → Apache解析 → access.log记录 → Docker日志输出 → Dozzle展示
+
+
+5. 安全分析结论
+SQL 注入发生在参数拼接阶段
+用户输入未经过过滤直接进入 SQL 查询
+攻击请求可以在 HTTP 日志中完整还原
+容器日志（Docker logs）可用于实时监控攻击行为
+
+6. 项目收获
+掌握 Docker 靶场部署流程
+理解 SQL 注入攻击原理
+学习 HTTP 请求在服务器日志中的表现形式
+建立“攻击行为 → 日志记录 → 行为还原”的分析思路
