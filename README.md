@@ -102,9 +102,13 @@ Dozzle 用于实时查看 Docker 容器日志。
 
 ### 4.4 日志截图
 
-![Dozzle容器列表](./images/dozzle-containers.png)
+Dozzle容器列表
+(<img width="383" height="290" alt="屏幕截图 2026-05-24 163758" src="https://github.com/user-attachments/assets/2b3554ac-6525-461e-a2a3-c48133eb8204" />
+)
 
-![DVWA日志](./images/dozzle-dvwa-log.png)
+DVWA日志
+(<img width="2112" height="1137" alt="屏幕截图 2026-05-24 163811" src="https://github.com/user-attachments/assets/f74d9549-9f42-48ba-a919-04b6a01ff55d" />
+)
 
 ---
 
@@ -136,7 +140,8 @@ id=1
 
 #### 页面截图
 
-![SQLi正常回显](<img width="650" height="125" alt="屏幕截图 2026-05-24 162641" src="https://github.com/user-attachments/assets/fa151466-2462-4f30-be02-6e884b2d5bf8" />
+SQLi正常回显
+(<img width="650" height="125" alt="屏幕截图 2026-05-24 162641" src="https://github.com/user-attachments/assets/fa151466-2462-4f30-be02-6e884b2d5bf8" />
 )
 
 #### 日志记录
@@ -149,7 +154,8 @@ GET /vulnerabilities/sqli/?id=1&Submit=Submit HTTP/1.1
 
 #### 日志截图
 
-![SQLi正常日志](<img width="1054" height="62" alt="屏幕截图 2026-05-24 162838" src="https://github.com/user-attachments/assets/5b819870-d712-4ae9-849f-e3fca1a3c9dc" />
+SQLi正常日志
+(<img width="1054" height="62" alt="屏幕截图 2026-05-24 162838" src="https://github.com/user-attachments/assets/5b819870-d712-4ae9-849f-e3fca1a3c9dc" />
 )
 
 这是一条正常请求。
