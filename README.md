@@ -342,20 +342,121 @@ DVWA (9090)
 
 ---
 
-## 10. 学习收获
+# 十、ModSecurity 检测原理分析
 
-通过本实验，学习了：
+本实验中，ModSecurity 使用 OWASP CRS（Core Rule Set）规则集对 HTTP 请求进行检测。
 
-- Docker 容器化部署
-- DVWA Web 漏洞复现
-- SQL Injection 原理
-- Apache access.log 分析
-- Docker logs 日志观察
-- Dozzle 容器日志监控
-- ModSecurity WAF 部署
-- Nginx reverse proxy
-- HTTP 请求分析
-- Web 攻击链路分析
+当浏览器发送请求时：
+
+```text
+Browser
+↓
+Nginx Reverse Proxy
+↓
+ModSecurity
+↓
+OWASP CRS Rules
+↓
+DVWA
+```
+
+ModSecurity 会对：
+
+- URL 参数
+- Header
+- Cookie
+- POST 数据
+- User-Agent
+
+等 HTTP 内容进行规则匹配。
+
+---
+
+## SQL Injection 检测示例
+
+实验中的 payload：
+
+```sql
+' or '1'='1
+```
+
+进入 HTTP 请求后：
+
+```text
+?id=' or '1'='1
+```
+
+ModSecurity 会检测：
+
+- 单引号 `'`
+- SQL 逻辑关键字 `or`
+- 条件恒成立表达式
+- SQL 特征组合
+
+OWASP CRS 中包含大量 SQL Injection 检测规则。
+
+当请求命中特征后：
+
+- 记录日志
+- 增加风险评分
+- 达到阈值后进行拦截
+
+因此会出现：
+
+```text
+403 Forbidden
+```
+
+或者规则命中日志。
+
+---
+
+## ModSecurity 的本质
+
+ModSecurity 本质上是：
+
+```text
+基于规则匹配的 Web Application Firewall
+```
+
+它并不理解 SQL 语义，而是：
+
+- 检测危险特征
+- 分析请求行为
+- 匹配攻击模式
+
+从而识别 Web 攻击。
+
+---
+
+## OWASP CRS 的作用
+
+OWASP CRS（Core Rule Set）是公开的 Web 攻击检测规则集。
+
+可用于检测：
+
+- SQL Injection
+- XSS
+- 文件包含
+- 命令执行
+- 路径穿越
+- 恶意 User-Agent
+
+等常见 Web 攻击行为。
+
+---
+
+## 本实验中的意义
+
+本实验不仅完成了漏洞复现，还实现了：
+
+```text
+攻击 → 日志 → WAF检测 → 攻击拦截
+```
+
+的完整攻击链观察。
+
+相比单纯打靶场，更接近真实 Web 安全环境。
 
 ---
 
