@@ -67,11 +67,11 @@ admin / password
 
 ### 3.5 页面截图
 
-![DVWA登录页](<img width="1001" height="471" alt="屏幕截图 2026-05-24 161846" src="https://github.com/user-attachments/assets/b83bbd10-8cd4-44c9-ae5a-b46754733a0c" />
-)
+<img width="1001" height="471" alt="屏幕截图 2026-05-24 161846" src="https://github.com/user-attachments/assets/b83bbd10-8cd4-44c9-ae5a-b46754733a0c" />
 
-![DVWA主页](<img width="898" height="882" alt="屏幕截图 2026-05-24 162003" src="https://github.com/user-attachments/assets/852cf67c-4ef8-4cb6-8637-d11a3c98726e" />
-)
+
+<img width="898" height="882" alt="屏幕截图 2026-05-24 162003" src="https://github.com/user-attachments/assets/852cf67c-4ef8-4cb6-8637-d11a3c98726e" />
+
 
 ---
 
@@ -136,7 +136,8 @@ id=1
 
 #### 页面截图
 
-![SQLi正常回显](./images/sqli-normal.png)
+![SQLi正常回显](<img width="650" height="125" alt="屏幕截图 2026-05-24 162641" src="https://github.com/user-attachments/assets/fa151466-2462-4f30-be02-6e884b2d5bf8" />
+)
 
 #### 日志记录
 
@@ -148,7 +149,8 @@ GET /vulnerabilities/sqli/?id=1&Submit=Submit HTTP/1.1
 
 #### 日志截图
 
-![SQLi正常日志](./images/sqli-normal-log.png)
+![SQLi正常日志](<img width="1054" height="62" alt="屏幕截图 2026-05-24 162838" src="https://github.com/user-attachments/assets/5b819870-d712-4ae9-849f-e3fca1a3c9dc" />
+)
 
 这是一条正常请求。
 
@@ -166,7 +168,9 @@ GET /vulnerabilities/sqli/?id=1&Submit=Submit HTTP/1.1
 
 #### 页面截图
 
-![SQLi注入成功](./images/sqli-success.png)
+SQLi注入成功
+(<img width="394" height="356" alt="屏幕截图 2026-05-21 173636" src="https://github.com/user-attachments/assets/0e4e93d8-1c91-4841-9ee9-24de82c40350" />
+)
 
 #### 日志记录
 
@@ -178,7 +182,9 @@ GET /vulnerabilities/sqli/?id=+%27+or+%271%27%3D%271&Submit=Submit HTTP/1.1
 
 #### 日志截图
 
-![SQLi注入日志](./images/sqli-success-log.png)
+SQLi注入日志
+(<img width="1036" height="60" alt="屏幕截图 2026-05-24 163224" src="https://github.com/user-attachments/assets/81e6dd19-549d-4ffd-b9a7-c63cbc25a873" />
+)
 
 其中：
 
@@ -237,7 +243,7 @@ DVWA
 
 ---
 
-### 7.1 WAF Reverse Proxy 配置
+### 7 WAF Reverse Proxy 配置
 
 ModSecurity 容器通过 Nginx reverse proxy 转发流量：
 
@@ -258,12 +264,6 @@ ModSecurity → OWASP CRS 规则检测
 ```
 
 然后再转发到 DVWA。
-
-### 7.2 WAF 页面截图
-
-![WAF入口页](./images/waf-home.png)
-
-![WAF配置](./images/waf-config.png)
 
 ---
 
@@ -291,9 +291,13 @@ WAF 会根据 OWASP CRS 规则进行检测。
 
 ### 8.2 结果截图
 
-![WAF拦截结果](./images/waf-block.png)
+WAF拦截结果
+(<img width="1036" height="60" alt="屏幕截图 2026-05-24 163224" src="https://github.com/user-attachments/assets/fd707aa5-2586-4833-b1bf-d19c77d02d01" />
+)
 
-![WAF拦截日志](./images/waf-block-log.png)
+WAF拦截日志
+(<img width="1058" height="1071" alt="屏幕截图 2026-05-24 163506" src="https://github.com/user-attachments/assets/19877d64-2e29-4340-96d7-098a050f6cb9" />
+)
 
 ---
 
